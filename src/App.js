@@ -50,10 +50,11 @@ function App() {
         </button>
       </form>
 
-      <div id="displayArea" className="display-area" style={{ display: isSubmitted ? 'block' : 'none' }}>
-        <h2>Full Name:</h2>
-        <p id="fullName">{fullName}</p>
-      </div>
+      {isSubmitted && (
+        <div id="displayArea" className="display-area">
+          <p id="fullName">Full Name: {fullName}</p>
+        </div>
+      )}
     </div>
   );
 }
