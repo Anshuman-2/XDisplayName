@@ -7,11 +7,10 @@ function App() {
   const [fullName, setFullName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const isFormValid = firstName.trim() !== '' && lastName.trim() !== '';
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isFormValid) {
+    
+    if (firstName.trim() && lastName.trim()) {
       setFullName(firstName.trim() + ' ' + lastName.trim());
       setIsSubmitted(true);
     }
@@ -19,16 +18,15 @@ function App() {
 
   return (
     <div className="container">
+      <h1>Full Name Display</h1>
+      
       <form id="nameForm" onSubmit={handleSubmit}>
-        <h1>Enter Your Name</h1>
-
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
             id="firstName"
             name="firstName"
-            placeholder="Enter your first name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
@@ -41,19 +39,18 @@ function App() {
             type="text"
             id="lastName"
             name="lastName"
-            placeholder="Enter your last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </div>
 
-        <button type="submit" id="submitBtn" disabled={!isFormValid}>
+        <button type="submit" id="submitBtn">
           Submit
         </button>
       </form>
 
-      <div className="display-area" style={{ display: isSubmitted ? 'block' : 'none' }}>
+      <div id="displayArea" className="display-area" style={{ display: isSubmitted ? 'block' : 'none' }}>
         <h2>Full Name:</h2>
         <p id="fullName">{fullName}</p>
       </div>
